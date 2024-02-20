@@ -1,14 +1,16 @@
-using Movable;
+using Movement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour, IMovable
+namespace Movement
 {
+    public class PlayerMovement : MonoBehaviour, IMovable
+    {
     [SerializeField] private float _jumpVelocity;
 
     [SerializeField] private float _movementVelocity;
 
-    private Animator _animator;
+    private StateMachine _stateMachine;
     
     private Rigidbody2D _rigidbody2D;
 
@@ -24,7 +26,7 @@ public class PlayerMovement : MonoBehaviour, IMovable
     {
         _isOnAir = true;
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
+        _stateMachine = GetComponent<StateMachine>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -37,13 +39,11 @@ public class PlayerMovement : MonoBehaviour, IMovable
 
         if (_isOnAir && (transform.position.y > _previousYPosition))
         {
-            _animator.SetBool("isJumping", true);
-            _animator.SetBool("isRunning", false);
+            _stateMachine.SetState("isRunning", "isJumping");
         }
         else if(_isOnAir && (transform.position.y < _previousYPosition))
         {
-            _animator.SetBool("isJumping", false);
-            _animator.SetBool("isFalling", true);
+            _stateMachine.SetState("isJumping", "isFalling");
         }
     }
 
@@ -63,7 +63,7 @@ public class PlayerMovement : MonoBehaviour, IMovable
         if (other.gameObject.name == "Tilemap")
         {
             _isOnAir = false;
-            _animator.SetBool("isFalling", false);
+            _stateMachine.SetState("isFalling", "isIdle");
         }
     }
 
@@ -78,13 +78,13 @@ public class PlayerMovement : MonoBehaviour, IMovable
     public void MoveRight(InputAction.CallbackContext context)
     {
         _inputDirection = context.ReadValue<float>();
-        _animator.SetBool("isRunning", true);
+        _stateMachine.SetState("isIdle", "isRunning");
     }
 
     public void ExitMoveRight(InputAction.CallbackContext context)
     {
         if(context.canceled)
-            _animator.SetBool("isRunning", false);
+            _stateMachine.SetState("isRunning", "isIdle");
     }
     
     public void Jump(InputAction.CallbackContext context)
@@ -93,5 +93,6 @@ public class PlayerMovement : MonoBehaviour, IMovable
         {
             _rigidbody2D.AddForce(new Vector2(0, 1) * _jumpVelocity);
         }
+    }
     }
 }

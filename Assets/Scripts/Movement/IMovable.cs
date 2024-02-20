@@ -1,7 +1,7 @@
-﻿namespace Movable
+﻿namespace Movement
 {
     internal interface IMovable
     {
-        private void Move(){}
+        protected void Move(){}
     }
 }
