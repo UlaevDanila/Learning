@@ -1,4 +1,3 @@
-using Movement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,15 +15,16 @@ namespace Movement
 
     private SpriteRenderer _spriteRenderer;
 
-    private bool _isOnAir;
+    private CollisionsHandler _collisionsHandler;
 
-    private float _inputDirection;
+    private InputManager _inputManager;
 
     private float _previousYPosition;
 
     private void Awake()
     {
-        _isOnAir = true;
+        _collisionsHandler = GetComponent<CollisionsHandler>();
+        _inputManager = GetComponent<InputManager>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _stateMachine = GetComponent<StateMachine>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
@@ -32,16 +32,16 @@ namespace Movement
 
     private void Update()
     {
-        if (_inputDirection < 0)
+        if (_inputManager.InputDirection < 0)
             _spriteRenderer.flipX = true;
-        if(_inputDirection > 0 && _spriteRenderer.flipX)
+        if(_inputManager.InputDirection > 0 && _spriteRenderer.flipX)
             _spriteRenderer.flipX = false;
 
-        if (_isOnAir && (transform.position.y > _previousYPosition))
+        if (_collisionsHandler.IsOnAir && (transform.position.y > _previousYPosition))
         {
             _stateMachine.SetState("isRunning", "isJumping");
         }
-        else if(_isOnAir && (transform.position.y < _previousYPosition))
+        else if(_collisionsHandler.IsOnAir && (transform.position.y < _previousYPosition))
         {
             _stateMachine.SetState("isJumping", "isFalling");
         }
@@ -55,44 +55,10 @@ namespace Movement
     private void FixedUpdate()
     {
         float velocityMultiplication = _movementVelocity*Time.fixedDeltaTime;
-        _rigidbody2D.velocity = new Vector2(_inputDirection* velocityMultiplication, _rigidbody2D.velocity.y);
+        float verticalVelocity = _inputManager.JumpButtonPressed && !_collisionsHandler.IsOnAir ? _jumpVelocity : _rigidbody2D.velocity.y;
+        _rigidbody2D.velocity = new Vector2(_inputManager.InputDirection * velocityMultiplication, verticalVelocity);
+        
     }
     
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.name == "Tilemap")
-        {
-            _isOnAir = false;
-            _stateMachine.SetState("isFalling", "isIdle");
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.name == "Tilemap")
-        {
-            _isOnAir = true;
-        }
-    }
-
-    public void MoveRight(InputAction.CallbackContext context)
-    {
-        _inputDirection = context.ReadValue<float>();
-        _stateMachine.SetState("isIdle", "isRunning");
-    }
-
-    public void ExitMoveRight(InputAction.CallbackContext context)
-    {
-        if(context.canceled)
-            _stateMachine.SetState("isRunning", "isIdle");
-    }
-    
-    public void Jump(InputAction.CallbackContext context)
-    {
-        if (context.performed && !_isOnAir)
-        {
-            _rigidbody2D.AddForce(new Vector2(0, 1) * _jumpVelocity);
-        }
-    }
     }
 }
