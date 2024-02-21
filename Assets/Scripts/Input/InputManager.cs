@@ -10,12 +10,9 @@ namespace Movement
 
         private StateMachine _stateMachine;
 
-        private CollisionsHandler _collisionsHandler;
-
         private void Awake()
         {
             _stateMachine = GetComponent<StateMachine>();
-            _collisionsHandler = GetComponent<CollisionsHandler>();
         }
         public void MoveRight(InputAction.CallbackContext context)
         {
@@ -31,7 +28,7 @@ namespace Movement
     
         public void Jump(InputAction.CallbackContext context)
         {
-            if (context.performed && !_collisionsHandler.IsOnAir)
+            if (context.performed)
             {
                 JumpButtonPressed = true;
             }
