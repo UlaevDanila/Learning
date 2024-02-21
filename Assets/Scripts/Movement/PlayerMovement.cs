@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace Movement
 {
-    public class PlayerMovement : MonoBehaviour, IMovable
+    public class PlayerMovement : MonoBehaviour
     {
     [SerializeField] private float _jumpVelocity;
 

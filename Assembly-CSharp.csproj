@@ -45,11 +45,10 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.12f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Movement\InputManager.cs" />
-    <Compile Include="Assets\Scripts\StateMachine.cs" />
+    <Compile Include="Assets\Scripts\Collison\CollisionsHandler.cs" />
     <Compile Include="Assets\Scripts\Movement\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\CollisionsHandler.cs" />
-    <Compile Include="Assets\Scripts\Movement\IMovable.cs" />
+    <Compile Include="Assets\Scripts\Input\InputManager.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\StateMachine.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2022.3.12f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
