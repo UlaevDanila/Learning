@@ -456,6 +456,11 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1177751265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3185405182735121320, guid: c73a25cf2e0578a43a3e98dd348f622d, type: 3}
+  m_PrefabInstance: {fileID: 1471503865206614208}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1201797611
 GameObject:
   m_ObjectHideFlags: 0
@@ -10427,6 +10432,7 @@ GameObject:
   - component: {fileID: 1348630880}
   - component: {fileID: 1348630879}
   - component: {fileID: 1348630878}
+  - component: {fileID: 1348630881}
   m_Layer: 0
   m_Name: Cherry
   m_TagString: Cherry
@@ -10522,6 +10528,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1348630881
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348630877}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.03203416, y: -0.1121186}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0389829, y: 0.8788135}
+  m_EdgeRadius: 0
 --- !u!1 &1362226080
 GameObject:
   m_ObjectHideFlags: 0
@@ -10578,10 +10629,22 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1900808649800461372, guid: c73a25cf2e0578a43a3e98dd348f622d, type: 3}
   m_PrefabInstance: {fileID: 1471503865206614208}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1177751265}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 92e9e072513e4f4d8265c94afe6f3b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1699028859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177751265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb1928fe1d6a0d348a0c44eb822562de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1819888183
@@ -11670,7 +11733,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3185405182735121320, guid: c73a25cf2e0578a43a3e98dd348f622d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1699028859}
   m_SourcePrefab: {fileID: 100100000, guid: c73a25cf2e0578a43a3e98dd348f622d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
