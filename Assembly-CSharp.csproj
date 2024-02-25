@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Collison\CollisionsHandler.cs" />
+    <Compile Include="Assets\Scripts\Collison\ItemCollector.cs" />
     <Compile Include="Assets\Scripts\Movement\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Input\InputManager.cs" />
     <Compile Include="Assets\Scripts\StateMachine\StateMachine.cs" />
